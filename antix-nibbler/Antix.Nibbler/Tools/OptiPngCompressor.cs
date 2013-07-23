@@ -19,36 +19,37 @@ namespace Antix.Nibbler.Tools
 
         public async Task CompressAsync(
             string fileFrom, string fileTo,
-            CompressProgress progress)
+            Action<string, int> progress)
         {
             var pngOutPath = Path
                 .GetFullPath(Path.Combine(_toolsDir, @"optipng.exe"));
 
             var processStart = new ProcessStartInfo(
-                pngOutPath, string.Format("\"{0}\" -out \"{1}\" -clobber", fileFrom, fileTo));
+                pngOutPath, string.Format("\"{0}\" -out \"{1}\" -clobber -verbose", fileFrom, fileTo));
 
             var processProgress = new AsyncProcessProgress();
-            if (progress != null)
-            {
-                processProgress.Output.CollectionChanged += (s, e) =>
-                    {
-                        var last = e.NewItems
-                                    .OfType<string>().Last()
-                                    .Replace(NumberFormatInfo.CurrentInfo.PercentSymbol, "");
-                        int percentage;
-                        if (int.TryParse(last, NumberStyles.Any, NumberFormatInfo.CurrentInfo, out percentage))
-                        {
-                            progress.Percentage = percentage;
-                        }
+            //if (progress != null)
+            //{
+            //    processProgress.Error.CollectionChanged += (s, e) =>
+            //        {
+            //            var last = e.NewItems
+            //                        .OfType<string>().Last();
 
-                        Console.WriteLine(last);
-                    };
-            }
+            //            progress(last, 0);
+            //        };
+            //}
+
+            if (progress != null)
+                progress(
+                    string.Format("Compressing {0}", Path.GetFileName(fileFrom)),
+                    0);
 
             using (var process = new AsyncProcess(processStart, processProgress))
             {
                 await process.RunAsync();
             }
+
+            if (progress != null) progress("Done.", 100);
         }
     }
 }

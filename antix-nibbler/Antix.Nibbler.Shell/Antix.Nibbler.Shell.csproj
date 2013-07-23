@@ -54,6 +54,7 @@
     <Compile Include="CompressContextMenu.cs" />
     <Compile Include="JsCssCompressContextMenu.cs" />
     <Compile Include="PngCompressContextMenu.cs" />
+    <Compile Include="ProgressDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

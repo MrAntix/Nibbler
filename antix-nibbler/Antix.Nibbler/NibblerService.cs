@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Antix.Nibbler.Tools;
 
@@ -31,22 +32,46 @@ namespace Antix.Nibbler
                 var pngPattern = options.CompressedFilesPattern ?? "{0}{1}";
 
                 var tasks = new List<Task>();
+                var filesArray = files as string[] ?? files.ToArray();
+                var filesCount = filesArray.Count();
+                var percentages = new int[filesCount];
+                var i = 0;
 
-                foreach (var file in files)
+                foreach (var file in filesArray)
                 {
                     var fileExt = Path.GetExtension(file);
+                    if (fileExt == null) continue;
+
                     var fileName = file.Substring(0, file.Length - fileExt.Length);
 
-                    var compressProgress = new CompressProgress();
+                    Action<string, int> progress = null;
+                    if (options.Progress != null)
+                    {
+                        var fileIndex = i++;
+                        progress =
+                            (m, p) =>
+                                {
+                                    percentages[fileIndex] = p;
+                                    options.Progress(
+                                        string.Format("Compressing\n{0}",
+                                                      string.Join(", ",
+                                                                  filesArray
+                                                                      .Where((f, fi) => percentages[fi] != 100)
+                                                                      .Select(Path.GetFileName))),
+
+                                        percentages.Sum()/filesCount);
+                                };
+                    }
 
                     switch (fileExt)
                     {
                         case ".png":
+
                             tasks.Add(
                                 _pngCompressor.CompressAsync(
                                     file,
                                     string.Format(pngPattern, fileName, fileExt),
-                                    compressProgress
+                                    progress
                                     )
                                 );
 
@@ -59,7 +84,6 @@ namespace Antix.Nibbler
 
                 try
                 {
-
                     await Task.Factory.ContinueWhenAll(tasks.ToArray(), _ => { });
                 }
                 catch (Exception ex)

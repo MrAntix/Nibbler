@@ -55,7 +55,6 @@
     <Compile Include="NibblerCompressOptions.cs" />
     <Compile Include="NibblerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\CompressProgress.cs" />
     <Compile Include="Tools\IPngCompressor.cs" />
     <Compile Include="Tools\OptiPngCompressor.cs" />
   </ItemGroup>
