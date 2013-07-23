@@ -1,72 +1,30 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using SharpShell.SharpContextMenu;
+using SharpShell.Attributes;
 
 namespace Antix.Nibbler.Shell
 {
-    public abstract class CompressContextMenu : SharpContextMenu
+    [ComVisible(true)]
+    //[COMServerAssociation(AssociationType.ClassOfExtension, "*")]
+    public class CompressContextMenu : CompressContextMenuBase
     {
-        readonly NibblerService _nibblerService = new NibblerService();
-
-        public async Task CompressFilesToSingleAsync()
+        protected override bool CanShowMenu()
         {
-            await _nibblerService.CompressAsync(SelectedItemPaths, new NibblerCompressOptions
-                {
-                    CompressedFile = "{0}.min{1}",
-                    Progress = (m, p) =>
-                        {
-                            Debug.WriteLine("{0} {1}%", m, p);
-                            return false;
-                        }
-                });
+            return SelectedItemPaths.All(file => file.EndsWith(".png"));
         }
 
-        public async Task CompressFilesToMinAsync()
+        protected override ContextMenuStrip CreateMenu()
         {
-            try
-            {
-                var waitDialog = new ProgressDialog
-                    {
-                        Title = "Antix Nibber"
-                    };
+            var menu = new ContextMenuStrip();
 
-                waitDialog.ShowDialog();
+            var compressFilesMenu = new ToolStripMenuItem("Compress");
 
-                await _nibblerService.CompressAsync(SelectedItemPaths, new NibblerCompressOptions
-                    {
-                        CompressedFilesPattern = "{0}.min{1}",
-                        Progress = (m, p) =>
-                            {
-                                var ms = m.Split('\n');
-                                waitDialog.Header = ms[0];
-                                if (ms.Length > 1) waitDialog.Message = ms[1];
+            compressFilesMenu.Click += (sender, args) => CompressFilesAsync();
 
-                                waitDialog.Value = p;
+            menu.Items.Add(compressFilesMenu);
 
-                                return !waitDialog.HasUserCancelled;
-                            }
-                    });
-
-                waitDialog.CloseDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        public async Task CompressFilesAsync()
-        {
-            await _nibblerService.CompressAsync(SelectedItemPaths, new NibblerCompressOptions
-                {
-                    Progress = (m, p) =>
-                        {
-                            Debug.WriteLine("{0} {1}%", m, p);
-                            return false;
-                        }
-                });
+            return menu;
         }
     }
 }

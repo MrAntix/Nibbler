@@ -51,8 +51,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompressContextMenuBase.cs" />
     <Compile Include="CompressContextMenu.cs" />
-    <Compile Include="JsCssCompressContextMenu.cs" />
     <Compile Include="PngCompressContextMenu.cs" />
     <Compile Include="ProgressDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
