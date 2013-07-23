@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antix.Nibbler", "Antix.Nibbler\Antix.Nibbler.csproj", "{CC0FCACE-5B86-48CA-9BA0-1E05B0E0AF5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antix.Nibbler.Tests", "Antix.Nibbler.Tests\Antix.Nibbler.Tests.csproj", "{E4658AEC-4AAC-40E4-BDB5-886EE9C574A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Antix.Nibbler.Shell", "Antix.Nibbler.Shell\Antix.Nibbler.Shell.csproj", "{901488FF-F2EC-4581-9700-B89322AE046E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC0FCACE-5B86-48CA-9BA0-1E05B0E0AF5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0FCACE-5B86-48CA-9BA0-1E05B0E0AF5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0FCACE-5B86-48CA-9BA0-1E05B0E0AF5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0FCACE-5B86-48CA-9BA0-1E05B0E0AF5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4658AEC-4AAC-40E4-BDB5-886EE9C574A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4658AEC-4AAC-40E4-BDB5-886EE9C574A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4658AEC-4AAC-40E4-BDB5-886EE9C574A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4658AEC-4AAC-40E4-BDB5-886EE9C574A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{901488FF-F2EC-4581-9700-B89322AE046E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{901488FF-F2EC-4581-9700-B89322AE046E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{901488FF-F2EC-4581-9700-B89322AE046E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{901488FF-F2EC-4581-9700-B89322AE046E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
