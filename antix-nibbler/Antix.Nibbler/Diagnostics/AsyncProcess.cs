@@ -56,8 +56,12 @@ namespace Antix.Nibbler.Diagnostics
             _progress.RegisterCancel(() =>
                 {
                     tcs.TrySetCanceled();
-                    if (!_process.HasExited)
-                        _process.CloseMainWindow();
+                    if (_process.HasExited) return;
+
+                    _process.CloseMainWindow();
+
+                    if (_process.HasExited) return;
+                    _process.Kill();
                 });
 
             if (!_process.Start())

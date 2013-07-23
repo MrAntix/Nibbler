@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Antix.Nibbler.Tools
 {
@@ -7,6 +6,6 @@ namespace Antix.Nibbler.Tools
     {
         Task CompressAsync(
             string fileFrom, string fileTo,
-            Action<string, int> progress);
+            CompressorProgress progress);
     }
 }

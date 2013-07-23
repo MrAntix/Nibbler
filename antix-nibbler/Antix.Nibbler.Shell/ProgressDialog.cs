@@ -14,15 +14,11 @@ namespace Antix.Nibbler.Shell
         {
             if (_pd != null) return;
 
-            _control = new Control();
-            _control.CreateControl();
-
             _pd = (Win32IProgressDialog) new Win32ProgressDialog();
 
             _pd.SetProgress(10, 100);
 
             _pd.SetTitle(_title);
-            _pd.SetCancelMsg(_cancelMessage, null);
             _pd.SetLine(1, _header, false, IntPtr.Zero);
 
             var dialogFlags = PROGDLG.Normal;
@@ -56,25 +52,11 @@ namespace Antix.Nibbler.Shell
             set
             {
                 _title = value;
-                if (_pd != null)
-                {
-                    _pd.SetTitle(_title);
-                }
-            }
-        }
-
-        string _cancelMessage = string.Empty;
-
-        public string CancelMessage
-        {
-            get { return _cancelMessage; }
-            set
-            {
-                _cancelMessage = value;
-                if (_pd != null)
-                {
-                    _pd.SetCancelMsg(_cancelMessage, null);
-                }
+                Invoke(() =>
+                    {
+                        if (_pd != null)
+                            _pd.SetTitle(_title);
+                    });
             }
         }
 
@@ -87,7 +69,11 @@ namespace Antix.Nibbler.Shell
             {
                 _header = value;
 
-                Invoke(() => _pd.SetLine(1, _header, false, IntPtr.Zero));
+                Invoke(() =>
+                    {
+                        if (_pd != null)
+                            _pd.SetLine(1, _header, false, IntPtr.Zero);
+                    });
             }
         }
 
@@ -100,15 +86,14 @@ namespace Antix.Nibbler.Shell
             {
                 _message = value;
 
-                Invoke(() => _pd.SetLine(2, _message, false, IntPtr.Zero));
+                Invoke(() =>
+                    {
+                        if (_pd != null)
+                            _pd.SetLine(2, _message, false, IntPtr.Zero);
+                    });
             }
         }
 
-        void Invoke(MethodInvoker method)
-        {
-            _control.BeginInvoke(method);
-        }
-        
         int _value;
 
         public int Value
@@ -118,22 +103,39 @@ namespace Antix.Nibbler.Shell
             {
                 _value = value;
 
-                Invoke(() => _pd.SetProgress((uint)_value, 100));
+                Invoke(() =>
+                    {
+                        if (_pd != null)
+                            _pd.SetProgress((uint) _value, 100);
+                    });
             }
         }
+
+        bool _cancelled;
 
         public bool HasUserCancelled
         {
             get
             {
-                if (_pd != null)
-                {
-                    return _pd.HasUserCancelled();
-                }
+                Invoke(() =>
+                    {
+                        if (_pd != null)
+                            _cancelled = _pd.HasUserCancelled();
+                    });
 
-
-                return false;
+                return _cancelled;
             }
+        }
+
+        void Invoke(MethodInvoker method)
+        {
+            if (_control == null)
+            {
+                _control = new Control();
+                _control.CreateControl();
+            }
+
+            _control.BeginInvoke(method);
         }
 
         #region "Win32 Stuff"

@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using SharpShell.SharpContextMenu;
 
 namespace Antix.Nibbler.Shell
@@ -13,39 +15,57 @@ namespace Antix.Nibbler.Shell
             await _nibblerService.CompressAsync(SelectedItemPaths, new NibblerCompressOptions
                 {
                     CompressedFile = "{0}.min{1}",
-                    Progress = (m, p) => Debug.WriteLine("{0} {1}%", m, p)
+                    Progress = (m, p) =>
+                        {
+                            Debug.WriteLine("{0} {1}%", m, p);
+                            return false;
+                        }
                 });
         }
 
         public async Task CompressFilesToMinAsync()
         {
-            var waitDialog = new ProgressDialog
-                {
-                    Title = "Antix Nibber"
-                };
+            try
+            {
+                var waitDialog = new ProgressDialog
+                    {
+                        Title = "Antix Nibber"
+                    };
 
-            waitDialog.ShowDialog();
+                waitDialog.ShowDialog();
 
-            await _nibblerService.CompressAsync(SelectedItemPaths, new NibblerCompressOptions
-                {
-                    CompressedFilesPattern = "{0}.min{1}",
-                    Progress = (m, p) =>
-                        {
-                            var ms = m.Split('\n');
-                            waitDialog.Header = ms[0];
-                            waitDialog.Message = ms[1];
-                            waitDialog.Value = p;
-                        }
-                });
+                await _nibblerService.CompressAsync(SelectedItemPaths, new NibblerCompressOptions
+                    {
+                        CompressedFilesPattern = "{0}.min{1}",
+                        Progress = (m, p) =>
+                            {
+                                var ms = m.Split('\n');
+                                waitDialog.Header = ms[0];
+                                if (ms.Length > 1) waitDialog.Message = ms[1];
 
-            waitDialog.CloseDialog();
+                                waitDialog.Value = p;
+
+                                return !waitDialog.HasUserCancelled;
+                            }
+                    });
+
+                waitDialog.CloseDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         public async Task CompressFilesAsync()
         {
             await _nibblerService.CompressAsync(SelectedItemPaths, new NibblerCompressOptions
                 {
-                    Progress = (m, p) => Debug.WriteLine("{0} {1}%", m, p)
+                    Progress = (m, p) =>
+                        {
+                            Debug.WriteLine("{0} {1}%", m, p);
+                            return false;
+                        }
                 });
         }
     }

@@ -34,8 +34,9 @@ namespace Antix.Nibbler
                 var tasks = new List<Task>();
                 var filesArray = files as string[] ?? files.ToArray();
                 var filesCount = filesArray.Count();
+                var fileIndex = 0;
+
                 var percentages = new int[filesCount];
-                var i = 0;
 
                 foreach (var file in filesArray)
                 {
@@ -44,23 +45,14 @@ namespace Antix.Nibbler
 
                     var fileName = file.Substring(0, file.Length - fileExt.Length);
 
-                    Action<string, int> progress = null;
+                    CompressorProgress progress = null;
                     if (options.Progress != null)
                     {
-                        var fileIndex = i++;
-                        progress =
-                            (m, p) =>
-                                {
-                                    percentages[fileIndex] = p;
-                                    options.Progress(
-                                        string.Format("Compressing\n{0}",
-                                                      string.Join(", ",
-                                                                  filesArray
-                                                                      .Where((f, fi) => percentages[fi] != 100)
-                                                                      .Select(Path.GetFileName))),
-
-                                        percentages.Sum()/filesCount);
-                                };
+                        progress = GetProgressObject(
+                            filesArray, fileIndex++,
+                            percentages,
+                            options.Progress
+                            );
                     }
 
                     switch (fileExt)
@@ -86,11 +78,40 @@ namespace Antix.Nibbler
                 {
                     await Task.Factory.ContinueWhenAll(tasks.ToArray(), _ => { });
                 }
-                catch (Exception ex)
+                catch (TaskCanceledException)
                 {
-                    throw ex;
+                    if (options.Progress != null)
+                        options.Progress("Cancelled", 100);
                 }
             }
+        }
+
+        static CompressorProgress GetProgressObject(
+            ICollection<string> filesArray, int fileIndex,
+            IList<int> percentages,
+            Func<string, int, bool> optionsProgress)
+        {
+            var progress = new CompressorProgress();
+
+            progress.Change = (m, p) =>
+                {
+                    percentages[fileIndex] = p;
+
+                    var message =
+                        string.Format("Compressing\n{0}",
+                                      string.Join(", ",
+                                                  filesArray
+                                                      .Where((f, fi) => percentages[fi] != 100)
+                                                      .Select(Path.GetFileName)));
+
+                    if (!optionsProgress(
+                        message, percentages.Sum()/filesArray.Count))
+                    {
+                        progress.Cancel();
+                    }
+                };
+
+            return progress;
         }
     }
 }

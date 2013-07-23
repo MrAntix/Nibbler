@@ -7,6 +7,7 @@ namespace Antix.Nibbler
         public string CompressedFilesPattern { get; set; }
         public string CompressedFile { get; set; }
         public bool DeleteOriginal { get; set; }
-        public Action<string, int> Progress { get; set; }
+
+        public Func<string, int, bool> Progress { get; set; }
     }
 }
