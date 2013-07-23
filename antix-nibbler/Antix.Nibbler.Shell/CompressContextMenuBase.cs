@@ -11,18 +11,18 @@ namespace Antix.Nibbler.Shell
 
         public async Task CompressFilesToMinAsync()
         {
-            await Compress(new NibblerCompressOptions
+            await CompressAsync(new NibblerCompressOptions
                 {
-                    CompressedFile = "{0}.min{1}"
+                    CompressedFilesPattern = "{0}.min{1}"
                 });
         }
 
         public async Task CompressFilesAsync()
         {
-            await Compress(new NibblerCompressOptions());
+            await CompressAsync(new NibblerCompressOptions());
         }
 
-        async Task Compress(NibblerCompressOptions options)
+        async Task CompressAsync(NibblerCompressOptions options)
         {
             var waitDialog = new ProgressDialog
                 {
