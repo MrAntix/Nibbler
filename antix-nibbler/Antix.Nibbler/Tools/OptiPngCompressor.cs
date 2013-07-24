@@ -26,12 +26,21 @@ namespace Antix.Nibbler.Tools
                 pngOutPath, string.Format("\"{0}\" -out \"{1}\" -clobber -verbose", fileFrom, fileTo));
 
             var processProgress = new AsyncProcessProgress();
+            var progressPercent = 0;
+            double progressPercentInc = 10;
             if (progress != null)
             {
                 processProgress.Error.CollectionChanged
-                    += (s, e) => progress.Change(
-                        string.Format("Compressing {0}", Path.GetFileName(fileFrom)),
-                        0);
+                    += (s, e) =>
+                        {
+                            progress.Change(
+                                string.Format("Compressing {0}", Path.GetFileName(fileFrom)),
+                                progressPercent);
+
+                            // just so the user sees some progress
+                            progressPercent += (int) Math.Round(progressPercentInc);
+                            progressPercentInc /= 1.1;
+                        };
                 progress.Cancelled += (s, e) => processProgress.Cancel();
             }
 
