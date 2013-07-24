@@ -4,22 +4,36 @@ using System.Windows.Forms;
 
 namespace Antix.Nibbler.Shell
 {
+    // base on
     // http://pietschsoft.com/post/2009/08/17/CSharp-IProgressDialog-Show-Native-Progress-Dialog-from-dotNet-in-Windows.aspx
     public class ProgressDialog
     {
-        Win32IProgressDialog _pd;
-        Control _control;
+        Win32IProgressDialog _comDialog;
+        readonly Control _control;
+
+        string _title = string.Empty;
+        string _header = string.Empty;
+        string _message = string.Empty;
+        int _value;
+        bool _cancelled;
+
+        public ProgressDialog()
+        {
+            // used to call methods on the win32 dialog from another thread
+            _control = new Control();
+            _control.CreateControl();
+        }
 
         public void ShowDialog(params PROGDLG[] flags)
         {
-            if (_pd != null) return;
+            if (_comDialog != null) return;
 
-            _pd = (Win32IProgressDialog) new Win32ProgressDialog();
+            _comDialog = (Win32IProgressDialog) new Win32ProgressDialog();
 
-            _pd.SetProgress(10, 100);
+            _comDialog.SetProgress(10, 100);
 
-            _pd.SetTitle(_title);
-            _pd.SetLine(1, _header, false, IntPtr.Zero);
+            _comDialog.SetTitle(_title);
+            _comDialog.SetLine(1, _header, false, IntPtr.Zero);
 
             var dialogFlags = PROGDLG.Normal;
             if (flags.Length != 0)
@@ -31,20 +45,16 @@ namespace Antix.Nibbler.Shell
                 }
             }
 
-            _pd.StartProgressDialog(IntPtr.Zero, null, dialogFlags, IntPtr.Zero);
+            _comDialog.StartProgressDialog(IntPtr.Zero, null, dialogFlags, IntPtr.Zero);
         }
 
         public void CloseDialog()
         {
-            if (_pd != null)
-            {
-                _pd.StopProgressDialog();
-                //Marshal.ReleaseComObject(pd);
-                _pd = null;
-            }
-        }
+            if (_comDialog == null) return;
 
-        string _title = string.Empty;
+            Call(() => _comDialog.StopProgressDialog());
+            _comDialog = null;
+        }
 
         public string Title
         {
@@ -52,15 +62,9 @@ namespace Antix.Nibbler.Shell
             set
             {
                 _title = value;
-                Invoke(() =>
-                    {
-                        if (_pd != null)
-                            _pd.SetTitle(_title);
-                    });
+                Call(() => _comDialog.SetTitle(_title));
             }
         }
-
-        string _header = string.Empty;
 
         public string Header
         {
@@ -69,15 +73,9 @@ namespace Antix.Nibbler.Shell
             {
                 _header = value;
 
-                Invoke(() =>
-                    {
-                        if (_pd != null)
-                            _pd.SetLine(1, _header, false, IntPtr.Zero);
-                    });
+                Call(() => _comDialog.SetLine(1, _header, false, IntPtr.Zero));
             }
         }
-
-        string _message = string.Empty;
 
         public string Message
         {
@@ -86,15 +84,9 @@ namespace Antix.Nibbler.Shell
             {
                 _message = value;
 
-                Invoke(() =>
-                    {
-                        if (_pd != null)
-                            _pd.SetLine(2, _message, false, IntPtr.Zero);
-                    });
+                Call(() => _comDialog.SetLine(2, _message, false, IntPtr.Zero));
             }
         }
-
-        int _value;
 
         public int Value
         {
@@ -103,39 +95,28 @@ namespace Antix.Nibbler.Shell
             {
                 _value = value;
 
-                Invoke(() =>
-                    {
-                        if (_pd != null)
-                            _pd.SetProgress((uint) _value, 100);
-                    });
+                Call(() => _comDialog.SetProgress((uint) _value, 100));
             }
         }
-
-        bool _cancelled;
 
         public bool HasUserCancelled
         {
             get
             {
-                Invoke(() =>
-                    {
-                        if (_pd != null)
-                            _cancelled = _pd.HasUserCancelled();
-                    });
+                Call(() => { _cancelled = _comDialog.HasUserCancelled(); });
 
                 return _cancelled;
             }
         }
 
-        void Invoke(MethodInvoker method)
+        void Call(MethodInvoker method)
         {
-            if (_control == null)
-            {
-                _control = new Control();
-                _control.CreateControl();
-            }
+            if (_comDialog == null) return;
+            if (_control.InvokeRequired)
 
-            _control.BeginInvoke(method);
+                _control.BeginInvoke(method);
+
+            else method();
         }
 
         #region "Win32 Stuff"
