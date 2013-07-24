@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using SharpShell.Attributes;
@@ -11,7 +12,7 @@ namespace Antix.Nibbler.Shell
     {
         protected override bool CanShowMenu()
         {
-            return SelectedItemPaths.All(file => file.EndsWith(".png"));
+            return SelectedItemPaths.All(file => file.EndsWith(".png", StringComparison.OrdinalIgnoreCase));
         }
 
         protected override ContextMenuStrip CreateMenu()

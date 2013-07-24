@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="CompressContextMenuBase.cs" />
     <Compile Include="CompressContextMenu.cs" />
-    <Compile Include="PngCompressContextMenu.cs" />
+    <Compile Include="CompressToMinContextMenu.cs" />
     <Compile Include="ProgressDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
