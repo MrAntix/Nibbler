@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Antix.Nibbler.Diagnostics;
 
@@ -27,7 +28,7 @@ namespace Antix.Nibbler.Tools
 
             var processProgress = new AsyncProcessProgress();
             var progressPercent = 0;
-            double progressPercentInc = 10;
+            double progressPercentInc = 0;
             if (progress != null)
             {
                 processProgress.Error.CollectionChanged
@@ -37,9 +38,15 @@ namespace Antix.Nibbler.Tools
                                 string.Format("Compressing {0}", Path.GetFileName(fileFrom)),
                                 progressPercent);
 
+                            if (e.NewItems.Cast<string>()
+                                 .Any(m => m.Contains("Trying:")))
+                            {
+                                progressPercentInc = 15;
+                            }
+
                             // just so the user sees some progress
                             progressPercent += (int) Math.Round(progressPercentInc);
-                            progressPercentInc /= 1.1;
+                            progressPercentInc /= 1.2;
                         };
                 progress.Cancelled += (s, e) => processProgress.Cancel();
             }
