@@ -10,12 +10,19 @@ namespace Antix.Nibbler
     public class NibblerService
     {
         readonly string _rootDir;
-        readonly IPngCompressor _pngCompressor;
+        readonly ICompressor _pngCompressor;
+        readonly ICompressor _jsCompressor;
+        readonly ICompressor _cssCompressor;
 
         public NibblerService()
         {
-            _rootDir = new Uri(Path.GetDirectoryName(GetType().Assembly.CodeBase)).LocalPath;
+            var codebaseDir = Path.GetDirectoryName(GetType().Assembly.CodeBase);
+            if (codebaseDir == null) throw new InvalidOperationException("Cannot get codebase dir for " + GetType().Assembly.FullName);
+
+            _rootDir = new Uri(codebaseDir).LocalPath;
             _pngCompressor = new OptiPngCompressor(Path.Combine(_rootDir, "Tools"));
+            _jsCompressor = new JsCompressor();
+            _cssCompressor = new CssCompressor();
         }
 
         public async Task CompressAsync(
@@ -43,6 +50,7 @@ namespace Antix.Nibbler
                     var fileExt = Path.GetExtension(file);
                     if (fileExt == null) continue;
 
+                    fileExt = fileExt.ToLower();
                     var fileName = file.Substring(0, file.Length - fileExt.Length);
 
                     CompressorProgress progress = null;
@@ -57,6 +65,24 @@ namespace Antix.Nibbler
 
                     switch (fileExt)
                     {
+                        case ".css":
+                            tasks.Add(
+                                _cssCompressor.CompressAsync(
+                                    file,
+                                    string.Format(pattern, fileName, fileExt),
+                                    progress
+                                    ));
+
+                            break;
+                        case ".js":
+                            tasks.Add(
+                                _jsCompressor.CompressAsync(
+                                    file,
+                                    string.Format(pattern, fileName, fileExt),
+                                    progress
+                                    ));
+
+                            break;
                         case ".png":
 
                             tasks.Add(

@@ -7,7 +7,7 @@ using Antix.Nibbler.Diagnostics;
 
 namespace Antix.Nibbler.Tools
 {
-    public class OptiPngCompressor : IPngCompressor
+    public class OptiPngCompressor : ICompressor
     {
         readonly string _toolsDir;
 

@@ -2,7 +2,7 @@
 
 namespace Antix.Nibbler.Tools
 {
-    public interface IPngCompressor
+    public interface ICompressor
     {
         Task CompressAsync(
             string fileFrom, string fileTo,
