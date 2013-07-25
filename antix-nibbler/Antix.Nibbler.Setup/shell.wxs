@@ -11,8 +11,8 @@
                 <Class Id="{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}" Context="InprocServer32" Description="Antix.Nibbler.Shell.CompressToMinContextMenu" ThreadingModel="both" ForeignServer="mscoree.dll">
                     <ProgId Id="Antix.Nibbler.Shell.CompressToMinContextMenu" Description="Antix.Nibbler.Shell.CompressToMinContextMenu" />
                 </Class>
-                <Class Id="{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}" Context="InprocServer32" Description="Antix.Nibbler.Shell.CompressContextMenu" ThreadingModel="both" ForeignServer="mscoree.dll">
-                    <ProgId Id="Antix.Nibbler.Shell.CompressContextMenu" Description="Antix.Nibbler.Shell.CompressContextMenu" />
+                <Class Id="{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}" Context="InprocServer32" Description="Antix.Nibbler.Shell.CompressThisContextMenu" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="Antix.Nibbler.Shell.CompressThisContextMenu" Description="Antix.Nibbler.Shell.CompressThisContextMenu" />
                 </Class>
                 <File Id="fil14AC069DEBD4434F6AF1693199E63BAE" KeyPath="yes" Source="SourceDir\Debug\antix.nibbler.shell.dll" />
                 <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
@@ -25,11 +25,11 @@
                 <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32" Name="CodeBase" Value="file:///[#fil14AC069DEBD4434F6AF1693199E63BAE]" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
-                <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0" Name="Class" Value="Antix.Nibbler.Shell.CompressContextMenu" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0" Name="Class" Value="Antix.Nibbler.Shell.CompressThisContextMenu" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0" Name="Assembly" Value="Antix.Nibbler.Shell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cce7748b001b51af" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#fil14AC069DEBD4434F6AF1693199E63BAE]" Type="string" Action="write" />
-                <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="Class" Value="Antix.Nibbler.Shell.CompressContextMenu" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="Class" Value="Antix.Nibbler.Shell.CompressThisContextMenu" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="Assembly" Value="Antix.Nibbler.Shell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cce7748b001b51af" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
                 <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="CodeBase" Value="file:///[#fil14AC069DEBD4434F6AF1693199E63BAE]" Type="string" Action="write" />

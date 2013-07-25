@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Antix.Nibbler.Shell.Properties;
 
 namespace Antix.Nibbler.Shell
 {
@@ -20,7 +22,14 @@ namespace Antix.Nibbler.Shell
             
             var menu = new ContextMenuStrip();
 
-            var compressFilesToMinMenu = new ToolStripMenuItem("Compress to .min");
+            var image = Resources.CompressToMin;
+            image.MakeTransparent(Color.White);
+
+            var compressFilesToMinMenu = new ToolStripMenuItem("Compress to .min")
+            {
+                Image = image,
+                ImageScaling = ToolStripItemImageScaling.SizeToFit
+            };
 
             compressFilesToMinMenu.Click += (sender, args) => CompressFilesToMinAsync();
 

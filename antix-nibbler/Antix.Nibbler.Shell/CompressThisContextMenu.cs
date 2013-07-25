@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using SharpShell.Attributes;
+using Antix.Nibbler.Shell.Properties;
 
 namespace Antix.Nibbler.Shell
 {
     [ComVisible(true)]
     //[COMServerAssociation(AssociationType.ClassOfExtension, "*")]
-    public class CompressContextMenu : CompressContextMenuBase
+    public class CompressThisContextMenu : CompressContextMenuBase
     {
         protected override bool CanShowMenu()
         {
@@ -19,7 +20,15 @@ namespace Antix.Nibbler.Shell
         {
             var menu = new ContextMenuStrip();
 
-            var compressFilesMenu = new ToolStripMenuItem("Compress");
+            var image = Resources.CompressThis;
+            image.MakeTransparent(Color.White);
+
+
+            var compressFilesMenu = new ToolStripMenuItem("Compress")
+                {
+                    Image = image,
+                    ImageScaling = ToolStripItemImageScaling.SizeToFit
+                };
 
             compressFilesMenu.Click += (sender, args) => CompressFilesAsync();
 

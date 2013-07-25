@@ -29,7 +29,7 @@
       <Component Id="NibblerShell" Win64="yes">
         <File Id="NibblerShellFile" KeyPath="yes" Source="$(var.Antix.Nibbler.Shell.TargetDir)Antix.Nibbler.Shell.dll" />
         <RegistryValue Root="HKLM"
-                       Key="Software\Classes\*\shellex\ContextMenuHandlers\CompressContextMenu"
+                       Key="Software\Classes\*\shellex\ContextMenuHandlers\CompressThisContextMenu"
                        Type="string"
                        Value="{72b27c08-dcb1-3007-a4b1-91f3d22e99bc}" />
         <RegistryValue Root="HKLM"
@@ -43,8 +43,8 @@
                   Description="Antix.Nibbler.Shell.CompressToMinContextMenu" />
         </Class>
         <Class Id="{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}" Context="InprocServer32"
-               Description="Antix.Nibbler.Shell.CompressContextMenu" ThreadingModel="both" ForeignServer="mscoree.dll">
-          <ProgId Id="Antix.Nibbler.Shell.CompressContextMenu" Description="Antix.Nibbler.Shell.CompressContextMenu" />
+               Description="Antix.Nibbler.Shell.CompressThisContextMenu" ThreadingModel="both" ForeignServer="mscoree.dll">
+          <ProgId Id="Antix.Nibbler.Shell.CompressThisContextMenu" Description="Antix.Nibbler.Shell.CompressThisContextMenu" />
         </Class>
         <RegistryValue Root="HKCR"
                        Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}"
@@ -73,7 +73,7 @@
                        Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}"
                        Value="" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0"
-                       Name="Class" Value="Antix.Nibbler.Shell.CompressContextMenu" Type="string" Action="write" />
+                       Name="Class" Value="Antix.Nibbler.Shell.CompressThisContextMenu" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0"
                        Name="Assembly"
                        Value="Antix.Nibbler.Shell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cce7748b001b51af"
@@ -84,7 +84,7 @@
                        Name="CodeBase" Value="file:///[#NibblerShellFile]" Type="string"
                        Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="Class"
-                       Value="Antix.Nibbler.Shell.CompressContextMenu" Type="string" Action="write" />
+                       Value="Antix.Nibbler.Shell.CompressThisContextMenu" Type="string" Action="write" />
         <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="Assembly"
                        Value="Antix.Nibbler.Shell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cce7748b001b51af"
                        Type="string" Action="write" />
