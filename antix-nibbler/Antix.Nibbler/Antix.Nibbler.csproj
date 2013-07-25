@@ -86,6 +86,9 @@
     <None Include="Key.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Compressors\Yahoo.Yui.Compressor.License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="optipng.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

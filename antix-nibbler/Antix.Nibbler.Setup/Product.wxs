@@ -34,66 +34,66 @@
         <RegistryValue Root="HKLM"
                        Key="Software\Classes\*\shellex\ContextMenuHandlers\CompressThisContextMenu"
                        Type="string"
-                       Value="{72b27c08-dcb1-3007-a4b1-91f3d22e99bc}" />
+                       Value="{b967d8e3-00b8-3f08-b189-e87e050dcc81}" />
         <RegistryValue Root="HKLM"
                        Key="Software\Classes\*\shellex\ContextMenuHandlers\CompressToMinContextMenu"
                        Type="string"
-                       Value="{250d3181-b983-3bc2-8c7e-7ad27d28bca3}" />
-        <Class Id="{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}" Context="InprocServer32"
+                       Value="{ac3f6c7e-333c-3129-bee0-41ac22dcd110}" />
+        <Class Id="{ac3f6c7e-333c-3129-bee0-41ac22dcd110}" Context="InprocServer32"
                Description="Antix.Nibbler.Shell.CompressToMinContextMenu" ThreadingModel="both"
                ForeignServer="mscoree.dll">
           <ProgId Id="Antix.Nibbler.Shell.CompressToMinContextMenu"
                   Description="Antix.Nibbler.Shell.CompressToMinContextMenu" />
         </Class>
-        <Class Id="{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}" Context="InprocServer32"
+        <Class Id="{b967d8e3-00b8-3f08-b189-e87e050dcc81}" Context="InprocServer32"
                Description="Antix.Nibbler.Shell.CompressThisContextMenu" ThreadingModel="both" ForeignServer="mscoree.dll">
           <ProgId Id="Antix.Nibbler.Shell.CompressThisContextMenu" Description="Antix.Nibbler.Shell.CompressThisContextMenu" />
         </Class>
         <RegistryValue Root="HKCR"
-                       Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}"
+                       Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}"
                        Value="" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32\1.0.0.0"
+        <RegistryValue Root="HKCR" Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\InprocServer32\3.0.0.1"
                        Name="Class" Value="Antix.Nibbler.Shell.CompressToMinContextMenu" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32\1.0.0.0"
+        <RegistryValue Root="HKCR" Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\InprocServer32\cz"
                        Name="Assembly"
-                       Value="Antix.Nibbler.Shell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cce7748b001b51af"
+                       Value="Antix.Nibbler.Shell, Version=3.0.0.1, Culture=neutral, PublicKeyToken=cce7748b001b51af"
                        Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32\1.0.0.0"
+        <RegistryValue Root="HKCR" Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\InprocServer32\3.0.0.1"
                        Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32\1.0.0.0"
+        <RegistryValue Root="HKCR" Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\InprocServer32\3.0.0.1"
                        Name="CodeBase" Value="file:///[#NibblerShellFile]" Type="string"
                        Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32" Name="Class"
+        <RegistryValue Root="HKCR" Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\InprocServer32" Name="Class"
                        Value="Antix.Nibbler.Shell.CompressToMinContextMenu" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32" Name="Assembly"
-                       Value="Antix.Nibbler.Shell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cce7748b001b51af"
+        <RegistryValue Root="HKCR" Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\InprocServer32" Name="Assembly"
+                       Value="Antix.Nibbler.Shell, Version=3.0.0.1, Culture=neutral, PublicKeyToken=cce7748b001b51af"
                        Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32"
+        <RegistryValue Root="HKCR" Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\InprocServer32"
                        Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{250D3181-B983-3BC2-8C7E-7AD27D28BCA3}\InprocServer32" Name="CodeBase"
+        <RegistryValue Root="HKCR" Key="CLSID\{ac3f6c7e-333c-3129-bee0-41ac22dcd110}\InprocServer32" Name="CodeBase"
                        Value="file:///[#NibblerShellFile]" Type="string" Action="write" />
         <RegistryValue Root="HKCR"
-                       Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}"
+                       Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}"
                        Value="" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0"
+        <RegistryValue Root="HKCR" Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\InprocServer32\3.0.0.1"
                        Name="Class" Value="Antix.Nibbler.Shell.CompressThisContextMenu" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0"
+        <RegistryValue Root="HKCR" Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\InprocServer32\3.0.0.1"
                        Name="Assembly"
-                       Value="Antix.Nibbler.Shell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cce7748b001b51af"
+                       Value="Antix.Nibbler.Shell, Version=3.0.0.1, Culture=neutral, PublicKeyToken=cce7748b001b51af"
                        Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0"
+        <RegistryValue Root="HKCR" Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\InprocServer32\3.0.0.1"
                        Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32\1.0.0.0"
+        <RegistryValue Root="HKCR" Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\InprocServer32\3.0.0.1"
                        Name="CodeBase" Value="file:///[#NibblerShellFile]" Type="string"
                        Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="Class"
+        <RegistryValue Root="HKCR" Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\InprocServer32" Name="Class"
                        Value="Antix.Nibbler.Shell.CompressThisContextMenu" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="Assembly"
-                       Value="Antix.Nibbler.Shell, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cce7748b001b51af"
+        <RegistryValue Root="HKCR" Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\InprocServer32" Name="Assembly"
+                       Value="Antix.Nibbler.Shell, Version=3.0.0.1, Culture=neutral, PublicKeyToken=cce7748b001b51af"
                        Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32"
+        <RegistryValue Root="HKCR" Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\InprocServer32"
                        Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
-        <RegistryValue Root="HKCR" Key="CLSID\{72B27C08-DCB1-3007-A4B1-91F3D22E99BC}\InprocServer32" Name="CodeBase"
+        <RegistryValue Root="HKCR" Key="CLSID\{b967d8e3-00b8-3f08-b189-e87e050dcc81}\InprocServer32" Name="CodeBase"
                        Value="file:///[#NibblerShellFile]" Type="string" Action="write" />
 
       </Component>
@@ -102,6 +102,7 @@
       </Component>
       <Component Id="Compressors" Win64="yes">
         <File Source="$(var.Antix.Nibbler.TargetDir)Yahoo.Yui.Compressor.dll" />
+        <File Source="$(var.Antix.Nibbler.TargetDir)Compressors\Yahoo.Yui.Compressor.License.txt" />
         <File Source="$(var.Antix.Nibbler.TargetDir)EcmaScript.NET.dll" />
         <File Source="$(var.Antix.Nibbler.TargetDir)Iesi.Collections.dll" />
         <File Source="$(var.Antix.Nibbler.TargetDir)Optipng.exe" />
