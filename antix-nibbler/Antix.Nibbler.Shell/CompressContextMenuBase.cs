@@ -24,15 +24,16 @@ namespace Antix.Nibbler.Shell
 
         async Task CompressAsync(NibblerCompressOptions options)
         {
-            var waitDialog = new ProgressDialog
-                {
-                    Title = "Antix Nibber"
-                };
-
-            waitDialog.ShowDialog();
-
+            ProgressDialog waitDialog = null;
             try
             {
+                waitDialog = new ProgressDialog
+                    {
+                        Title = "Antix Nibber"
+                    };
+
+                waitDialog.ShowDialog();
+
                 options.Progress = GetProgressAction(waitDialog);
                 await _nibblerService.CompressAsync(SelectedItemPaths, options);
             }
@@ -40,8 +41,11 @@ namespace Antix.Nibbler.Shell
             {
                 MessageBox.Show(ex.ToString());
             }
-
-            waitDialog.CloseDialog();
+            finally
+            {
+                if (waitDialog != null)
+                    waitDialog.CloseDialog();
+            }
         }
 
         static Func<string, int, bool> GetProgressAction(ProgressDialog waitDialog)

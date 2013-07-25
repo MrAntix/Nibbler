@@ -20,7 +20,7 @@ namespace Antix.Nibbler
             if (codebaseDir == null) throw new InvalidOperationException("Cannot get codebase dir for " + GetType().Assembly.FullName);
 
             _rootDir = new Uri(codebaseDir).LocalPath;
-            _pngCompressor = new OptiPngCompressor(Path.Combine(_rootDir, "Tools"));
+            _pngCompressor = new OptiPngCompressor(_rootDir);
             _jsCompressor = new JsCompressor();
             _cssCompressor = new CssCompressor();
         }

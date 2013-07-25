@@ -17,6 +17,7 @@ namespace Antix.Nibbler.Shell
 
         protected override ContextMenuStrip CreateMenu()
         {
+            
             var menu = new ContextMenuStrip();
 
             var compressFilesToMinMenu = new ToolStripMenuItem("Compress to .min");
