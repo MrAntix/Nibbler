@@ -11,6 +11,9 @@
     <Feature Id="ProductFeature" Title="Antix Nibbler" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
     </Feature>
+  
+    <Icon Id="AppIcon" SourceFile="..\..\..\graphics\CompressThis.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="AppIcon" />
   </Product>
 
   <Fragment>
