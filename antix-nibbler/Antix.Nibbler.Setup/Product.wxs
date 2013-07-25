@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Antix Nibbler" Language="1033" Version="1.0.0" Manufacturer="Antix Software Limited"
+  <Product Id="*" Name="Antix Nibbler" Language="1033" Version="3.0.0.01" Manufacturer="Antix Software Limited"
            UpgradeCode="500f2c62-b055-449c-81f0-f2ec5b409c86">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
